@@ -3,143 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singla Lady Garments | Shop</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>Singla Lady Garments | Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
-        body { margin: 0; background-color: #050505; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        body { background: #050505; color: white; overflow-x: hidden; }
+        .hero-title { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; }
         canvas { position: fixed; top: 0; left: 0; z-index: -1; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .cart-modal { display: none; position: fixed; right: 0; top: 0; height: 100%; width: 350px; background: #0a0a0a; z-index: 100; border-left: 1px solid #333; padding: 2rem; }
     </style>
 </head>
 <body>
-
-    <nav class="flex justify-between items-center p-6 fixed w-full z-50 glass">
-        <div class="text-2xl font-bold tracking-tighter">SINGLA</div>
-        <button onclick="toggleCart()" class="text-xs uppercase border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition">
-            Cart (<span id="cart-count">0</span>)
-        </button>
+    <nav class="flex justify-between p-8 fixed w-full z-50 mix-blend-difference">
+        <div class="font-bold text-xl tracking-tighter">SINGLA.</div>
+        <div class="space-x-8 text-[10px] uppercase tracking-[0.3em]">
+            <a href="index.html" class="border-b border-white">Home</a>
+            <a href="shop.html" class="hover:opacity-50">Shop</a>
+            <a href="about.html" class="hover:opacity-50">About</a>
+        </div>
     </nav>
 
-    <section class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        <h2 class="text-4xl font-light mb-12">New Collection '26</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            
-            <div class="group border border-white/5 p-4 rounded-lg bg-white/5">
-                <div class="aspect-[3/4] overflow-hidden mb-4">
-                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-sm tracking-widest uppercase">Silk Party Dress</h3>
-                        <p class="text-gray-400">₹2,499</p>
-                    </div>
-                    <button onclick="addToCart('Silk Party Dress', 2499)" class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase">Add</button>
-                </div>
-            </div>
-
-            <div class="group border border-white/5 p-4 rounded-lg bg-white/5">
-                <div class="aspect-[3/4] overflow-hidden mb-4">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-sm tracking-widest uppercase">Modern Kurti</h3>
-                        <p class="text-gray-400">₹1,899</p>
-                    </div>
-                    <button onclick="addToCart('Modern Kurti', 1899)" class="bg-white text-black px-4 py-2 text-[10px] font-bold uppercase">Add</button>
-                </div>
-            </div>
-
+    <section class="h-screen flex flex-col justify-center px-10">
+        <h1 class="hero-title font-light tracking-tighter">MODERN<br><span class="italic text-gray-600">COUTURE</span></h1>
+        <p class="max-w-sm mt-6 text-gray-400 text-sm leading-relaxed">Discover the 2026 Winter Collection. Crafted with precision, designed for elegance.</p>
+        <div class="mt-10">
+            <a href="shop.html" class="px-10 py-4 border border-white/20 hover:bg-white hover:text-black transition duration-500 uppercase text-[10px] tracking-widest">Enter Shop</a>
         </div>
     </section>
 
-    <div id="cartSidebar" class="cart-modal shadow-2xl">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-xl font-bold">Your Bag</h2>
-            <button onclick="toggleCart()" class="text-gray-400 hover:text-white">✕</button>
-        </div>
-        <div id="cart-items" class="space-y-4 mb-8 max-h-[60vh] overflow-y-auto">
-            </div>
-        <div class="border-t border-white/10 pt-4">
-            <div class="flex justify-between mb-4">
-                <span>Total:</span>
-                <span id="cart-total">₹0</span>
-            </div>
-            <button onclick="checkout()" class="w-full bg-green-600 hover:bg-green-700 py-4 text-xs font-bold uppercase tracking-widest transition">
-                Order via WhatsApp
-            </button>
-        </div>
-    </div>
-
     <script>
-        let cart = [];
-        let total = 0;
-
-        function addToCart(name, price) {
-            cart.push({name, price});
-            updateUI();
-        }
-
-        function updateUI() {
-            const list = document.getElementById('cart-items');
-            const count = document.getElementById('cart-count');
-            const totalEl = document.getElementById('cart-total');
-            
-            list.innerHTML = '';
-            total = 0;
-            
-            cart.forEach((item, index) => {
-                total += item.price;
-                list.innerHTML += `
-                    <div class="flex justify-between text-sm bg-white/5 p-3">
-                        <span>${item.name}</span>
-                        <span>₹${item.price}</span>
-                    </div>
-                `;
-            });
-            
-            count.innerText = cart.length;
-            totalEl.innerText = `₹${total}`;
-        }
-
-        function toggleCart() {
-            const sidebar = document.getElementById('cartSidebar');
-            sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function checkout() {
-            if(cart.length === 0) return alert("Cart is empty!");
-            
-            let message = "New Order from Singla Garments:%0a";
-            cart.forEach(item => {
-                message += `- ${item.name} (₹${item.price})%0a`;
-            });
-            message += `%0aTotal: ₹${total}`;
-            
-            // Apna WhatsApp Number yahan dalo (with Country Code)
-            const phone = "919671003443"; 
-            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-        }
-
-        // --- 3D Background Logic ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-        const material = new THREE.PointsMaterial({ size: 0.02, color: 0x444444 });
-        const sphere = new THREE.Points(geometry, material);
-        scene.add(sphere);
+        const geometry = new THREE.IcosahedronGeometry(10, 1);
+        const material = new THREE.MeshBasicMaterial({ color: 0x333333, wireframe: true });
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
         camera.position.z = 20;
 
         function animate() {
             requestAnimationFrame(animate);
-            sphere.rotation.y += 0.002;
+            mesh.rotation.y += 0.003;
+            mesh.rotation.x += 0.001;
             renderer.render(scene, camera);
         }
         animate();
