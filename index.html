@@ -3,53 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singla Lady Garments | Home</title>
+    <title>Singla Lady Garments | All-In-One</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        body { background: #050505; color: white; overflow-x: hidden; }
-        .hero-title { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; }
+        html { scroll-behavior: smooth; }
+        body { background: #050505; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
     </style>
 </head>
 <body>
-    <nav class="flex justify-between p-8 fixed w-full z-50 mix-blend-difference">
-        <div class="font-bold text-xl tracking-tighter">SINGLA.</div>
-        <div class="space-x-8 text-[10px] uppercase tracking-[0.3em]">
-            <a href="index.html" class="border-b border-white">Home</a>
-            <a href="shop.html" class="hover:opacity-50">Shop</a>
-            <a href="about.html" class="hover:opacity-50">About</a>
+
+    <nav class="flex justify-between items-center p-6 fixed w-full z-50 glass">
+        <div class="text-xl font-bold tracking-tighter">SINGLA</div>
+        <div class="space-x-6 md:space-x-10 text-[10px] uppercase tracking-[0.2em]">
+            <a href="#home" class="hover:text-gray-400 transition">Home</a>
+            <a href="#shop" class="hover:text-gray-400 transition">Shop</a>
+            <a href="#about" class="hover:text-gray-400 transition">About</a>
         </div>
     </nav>
 
-    <section class="h-screen flex flex-col justify-center px-10">
-        <h1 class="hero-title font-light tracking-tighter">MODERN<br><span class="italic text-gray-600">COUTURE</span></h1>
-        <p class="max-w-sm mt-6 text-gray-400 text-sm leading-relaxed">Discover the 2026 Winter Collection. Crafted with precision, designed for elegance.</p>
-        <div class="mt-10">
-            <a href="shop.html" class="px-10 py-4 border border-white/20 hover:bg-white hover:text-black transition duration-500 uppercase text-[10px] tracking-widest">Enter Shop</a>
+    <section id="home" class="text-center">
+        <div class="max-w-4xl">
+            <h1 class="text-6xl md:text-9xl font-light tracking-tighter mb-4">SINGLA<br><span class="italic text-gray-500 text-4xl md:text-6xl">Couture 2026</span></h1>
+            <p class="text-gray-400 tracking-widest text-xs uppercase mb-8">Premium Lady Garments & Ethnic Wear</p>
+            <a href="#shop" class="px-8 py-3 border border-white hover:bg-white hover:text-black transition uppercase text-[10px] tracking-widest">View Collection</a>
         </div>
     </section>
+
+    <section id="shop" class="flex-col">
+        <h2 class="text-3xl font-light mb-12 tracking-widest uppercase text-gray-400">Our Collection</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+            <div class="glass p-4 rounded-sm group">
+                <div class="aspect-[3/4] overflow-hidden mb-4 bg-zinc-900">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                </div>
+                <h3 class="text-xs tracking-widest uppercase">Traditional Suite</h3>
+                <p class="text-gray-500 mb-4 text-sm">₹2,999</p>
+                <button onclick="order('Traditional Suite', 2999)" class="w-full py-2 bg-white text-black text-[10px] font-bold uppercase hover:bg-gray-200 transition">Order via WhatsApp</button>
+            </div>
+
+            <div class="glass p-4 rounded-sm group">
+                <div class="aspect-[3/4] overflow-hidden mb-4 bg-zinc-900">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                </div>
+                <h3 class="text-xs tracking-widest uppercase">Designer Gown</h3>
+                <p class="text-gray-500 mb-4 text-sm">₹4,499</p>
+                <button onclick="order('Designer Gown', 4499)" class="w-full py-2 bg-white text-black text-[10px] font-bold uppercase hover:bg-gray-200 transition">Order via WhatsApp</button>
+            </div>
+
+            <div class="glass p-4 rounded-sm group">
+                <div class="aspect-[3/4] overflow-hidden mb-4 bg-zinc-900">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                </div>
+                <h3 class="text-xs tracking-widest uppercase">Modern Saree</h3>
+                <p class="text-gray-500 mb-4 text-sm">₹5,299</p>
+                <button onclick="order('Modern Saree', 5299)" class="w-full py-2 bg-white text-black text-[10px] font-bold uppercase hover:bg-gray-200 transition">Order via WhatsApp</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-white/5">
+        <div class="max-w-2xl text-center px-6">
+            <h2 class="text-3xl font-light mb-6 tracking-widest uppercase">Our Story</h2>
+            <p class="text-gray-400 leading-relaxed mb-8">
+                At Singla Lady Garments, we believe every woman deserves to feel like royalty. Since our inception, we've focused on bringing the finest fabrics and the most elegant designs to our community. 
+            </p>
+            <div class="text-sm text-gray-300">
+                <p>📍 Visit Us: [Your Shop Address Here]</p>
+                <p class="mt-2">📞 Contact: +91 98765 43210</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center border-t border-white/5 text-[10px] text-gray-600 tracking-widest">
+        © 2026 SINGLA LADY GARMENTS. ALL RIGHTS RESERVED.
+    </footer>
 
     <script>
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        const geometry = new THREE.IcosahedronGeometry(10, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x333333, wireframe: true });
+        // Rotating Wireframe Object
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0x1a1a1a, wireframe: true });
         const mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
-        camera.position.z = 20;
+        camera.position.z = 30;
 
         function animate() {
             requestAnimationFrame(animate);
-            mesh.rotation.y += 0.003;
-            mesh.rotation.x += 0.001;
+            mesh.rotation.y += 0.005;
+            mesh.rotation.x += 0.002;
             renderer.render(scene, camera);
         }
         animate();
+
+        // Responsive resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // WhatsApp Order Function
+        function order(name, price) {
+            const phone = "919876543210"; // Apna real number yahan dalo
+            const msg = `Hi Singla Garments! I am interested in: ${name} (Price: ₹${price}). Please share more details.`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
     </script>
 </body>
 </html>
