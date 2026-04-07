@@ -7,33 +7,88 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { margin: 0; background-color: #050505; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:italic,wght@700&display=swap');
+        
+        body { margin: 0; background-color: #050505; color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         canvas { position: fixed; top: 0; left: 0; z-index: -1; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .hero-text { text-shadow: 0px 0px 20px rgba(255,255,255,0.2); }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .product-card:hover .product-img { transform: scale(1.05); }
+        .product-img { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
 <body>
 
-    <nav class="flex justify-between items-center p-6 fixed w-full z-10">
-        <div class="text-2xl font-bold tracking-widest">SINGLA</div>
-        <div class="space-x-8 hidden md:flex text-sm uppercase tracking-widest">
-            <a href="#" class="hover:text-gray-400 transition">Collection</a>
-            <a href="#" class="hover:text-gray-400 transition">Modern</a>
-            <a href="#" class="hover:text-gray-400 transition">About</a>
+    <nav class="flex justify-between items-center p-6 fixed w-full z-50 glass">
+        <div class="text-2xl font-bold tracking-tighter">SINGLA</div>
+        <div class="space-x-8 hidden md:flex text-xs uppercase tracking-[0.2em]">
+            <a href="#" class="hover:text-gray-400 transition">Home</a>
+            <a href="#collection" class="hover:text-gray-400 transition">Collection</a>
+            <a href="#about" class="hover:text-gray-400 transition">Our Story</a>
+            <a href="#contact" class="hover:text-gray-400 transition">Contact</a>
         </div>
-        <button class="px-6 py-2 border border-white text-xs uppercase hover:bg-white hover:text-black transition">Shop Now</button>
+        <div class="flex items-center gap-4">
+            <button class="text-xs uppercase border-b border-white pb-1">Cart (0)</button>
+        </div>
     </nav>
 
-    <main class="relative min-h-screen flex items-center justify-center text-center px-4">
+    <section class="relative h-screen flex items-center justify-center text-center px-4">
         <div class="max-w-4xl">
-            <h1 class="text-6xl md:text-8xl font-light mb-6 hero-text">ELEGANCE <br> <span class="font-serif italic text-gray-500">Redefined</span></h1>
-            <p class="text-gray-400 max-w-md mx-auto mb-10 tracking-wide">Premium lady garments crafted for those who value sophistication and modern style.</p>
-            <div class="flex gap-4 justify-center">
-                <a href="#explore" class="px-10 py-4 glass hover:bg-white hover:text-black transition duration-500 uppercase text-xs tracking-widest">Explore 2026 Lookbook</a>
+            <span class="text-[10px] uppercase tracking-[0.5em] mb-4 block text-gray-400">Est. 2026 Collection</span>
+            <h1 class="text-6xl md:text-9xl font-light mb-6 tracking-tighter">ELEGANCE <br> <span class="font-serif italic text-gray-500">Redefined</span></h1>
+            <a href="#collection" class="inline-block mt-8 px-12 py-4 border border-white text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-700">Explore Shop</a>
+        </div>
+    </section>
+
+    <section id="collection" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <h2 class="text-4xl font-light tracking-tight">New Arrivals</h2>
+                <p class="text-gray-500 mt-2">Selected pieces from our latest runway.</p>
+            </div>
+            <a href="#" class="text-xs uppercase border-b border-gray-600 pb-1 hover:text-gray-400 transition">View All</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="product-card group cursor-pointer">
+                <div class="aspect-[3/4] overflow-hidden bg-zinc-900 mb-6">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80" alt="Product" class="product-img w-full h-full object-cover opacity-80 group-hover:opacity-100">
+                </div>
+                <h3 class="text-sm tracking-widest uppercase">Midnight Silk Gown</h3>
+                <p class="text-gray-500 mt-1">$450.00</p>
+            </div>
+
+            <div class="product-card group cursor-pointer">
+                <div class="aspect-[3/4] overflow-hidden bg-zinc-900 mb-6">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Product" class="product-img w-full h-full object-cover opacity-80 group-hover:opacity-100">
+                </div>
+                <h3 class="text-sm tracking-widest uppercase">Ivory Modern Suit</h3>
+                <p class="text-gray-500 mt-1">$320.00</p>
+            </div>
+
+            <div class="product-card group cursor-pointer">
+                <div class="aspect-[3/4] overflow-hidden bg-zinc-900 mb-6">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="Product" class="product-img w-full h-full object-cover opacity-80 group-hover:opacity-100">
+                </div>
+                <h3 class="text-sm tracking-widest uppercase">Noir Velvet Wrap</h3>
+                <p class="text-gray-500 mt-1">$280.00</p>
             </div>
         </div>
-    </main>
+    </section>
+
+    <section id="contact" class="py-32 glass">
+        <div class="max-w-2xl mx-auto text-center px-6">
+            <h2 class="text-3xl font-serif italic mb-6">Join the Inner Circle</h2>
+            <p class="text-gray-400 text-sm mb-8 tracking-widest">Subscribe to receive updates on new drops and private sales.</p>
+            <div class="flex border-b border-gray-700 pb-2">
+                <input type="email" placeholder="YOUR EMAIL" class="bg-transparent w-full text-xs tracking-widest outline-none uppercase px-2">
+                <button class="text-[10px] uppercase tracking-widest hover:text-gray-400 transition">Submit</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-zinc-900 text-center">
+        <p class="text-[10px] text-gray-600 tracking-[0.3em]">© 2026 SINGLA LADY GARMENTS. ALL RIGHTS RESERVED.</p>
+    </footer>
 
     <script>
         const scene = new THREE.Scene();
@@ -42,9 +97,8 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        // Create Particles for 3D Depth
         const particlesGeometry = new THREE.BufferGeometry();
-        const counts = 3000;
+        const counts = 1500;
         const positions = new Float32Array(counts * 3);
 
         for(let i=0; i<counts * 3; i++) {
@@ -52,23 +106,22 @@
         }
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const particlesMaterial = new THREE.PointsMaterial({ size: 0.005, color: 0xffffff });
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.005, color: 0x555555 });
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
 
         camera.position.z = 3;
 
-        // Interaction
         document.addEventListener('mousemove', (e) => {
             const mouseX = (e.clientX / window.innerWidth) - 0.5;
             const mouseY = (e.clientY / window.innerHeight) - 0.5;
-            particlesMesh.rotation.y = mouseX * 0.5;
-            particlesMesh.rotation.x = mouseY * 0.5;
+            particlesMesh.rotation.y = mouseX * 0.2;
+            particlesMesh.rotation.x = mouseY * 0.2;
         });
 
         function animate() {
             requestAnimationFrame(animate);
-            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.y += 0.0005;
             renderer.render(scene, camera);
         }
         animate();
